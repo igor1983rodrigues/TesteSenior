@@ -1,0 +1,26 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="PERSISTENCE">
+	
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>br.com.amcom.TesteSeniorBackend.model.entity.Perfil</class>
+		<class>br.com.amcom.TesteSeniorBackend.model.entity.Usuario</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/seniorteste?useTimezone=true&serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="seniorteste" />
+			<property name="javax.persistence.jdbc.password" value="seniorteste" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
+			
+			<!-- property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" / -->
+			
+			<!-- property name="hibernate.enable_lazy_load_no_trans" value="true" / -->
+		</properties>
+	</persistence-unit>
+</persistence>

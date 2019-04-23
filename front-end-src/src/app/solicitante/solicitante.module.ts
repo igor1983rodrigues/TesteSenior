@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 
-import { SolicitanteComponent } from './solicitante.component';
 import { SolicitanteRoutingModule } from './solicitante-routing.module';
 import { CURRENCY_MASK_CONFIG_PTBR } from '../shared/currency-mask-config.const';
 import { ContainerModule } from '../shared/container/container.module';
 import { SolicitacaoService } from '../services/solicitacao.service';
+import { ViewsModule } from '../shared/views/views.module';
 
 @NgModule({
-  declarations: [SolicitanteComponent],
+  declarations: [],
   providers: [SolicitacaoService],
   imports: [
     CommonModule,
@@ -18,8 +18,9 @@ import { SolicitacaoService } from '../services/solicitacao.service';
     ReactiveFormsModule,
     NgxCurrencyModule.forRoot(CURRENCY_MASK_CONFIG_PTBR),
     ContainerModule,
+    ViewsModule,
     SolicitanteRoutingModule
   ],
-  exports: [SolicitanteComponent]
+  exports: []
 })
 export class SolicitanteModule { }

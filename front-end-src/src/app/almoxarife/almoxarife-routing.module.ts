@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AlmoxarifeComponent } from './almoxarife.component';
-import { SolicitanteComponent } from '../solicitante/solicitante.component';
 import { AuthGuard } from '../services/guard/auth.guard';
+import { ListaComponent } from '../shared/views/lista/lista.component';
+import { FormularioComponent } from '../shared/views/formulario/formulario.component';
 
 const almoxarifeRoutes: Routes = [{
     path: '',
-    component: AlmoxarifeComponent,
+    component: ListaComponent,
     canActivate: [AuthGuard],
     children: []
 },{
     path: 'solicitacao/:id',
-    component: SolicitanteComponent,
+    component: FormularioComponent,
     canActivate:[AuthGuard],
     children:[]
 }];
