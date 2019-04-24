@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { SolicitanteComponent } from './solicitante.component';
+import { FormularioComponent } from '../shared/views/formulario/formulario.component';
 
 const solicitanteRoutes: Routes = [{
     path: '',
-    component: SolicitanteComponent
+    component: FormularioComponent
 }];
 
 @NgModule({

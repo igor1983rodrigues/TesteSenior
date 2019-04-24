@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SolicitacaoService } from '../services/solicitacao.service';
 import { Solicitacao } from 'src/entities/solicitacao.entity';
+import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 
 @Component({
-  selector: 'app-almoxarife',
-  templateUrl: './almoxarife.component.html',
-  styleUrls: ['./almoxarife.component.css']
+  selector: 'app-lista',
+  templateUrl: './lista.component.html',
+  styleUrls: ['./lista.component.css']
 })
-export class AlmoxarifeComponent implements OnInit {
+export class ListaComponent implements OnInit {
   solicitacaoList: Solicitacao[];
 
   constructor(private solicitacaoService: SolicitacaoService) { }
