@@ -10,10 +10,22 @@ import java.util.Objects;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
+import br.com.amcom.TesteSeniorSB.model.dao.UsuarioDao;
+import br.com.amcom.TesteSeniorSB.model.entities.Usuario;
+import br.com.amcom.TesteSeniorSB.model.idao.IUsuarioDao;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 public class UsuarioController {
 
 	private static final String FRASE_SEGREDO = Instant.now().toString();
+	private IUsuarioDao iUsuarioDao;
+
+	public UsuarioController() {
+		this.iUsuarioDao = new UsuarioDao();
+	}
 
 	protected Object autenticar(String usuarioNome, String senha) throws Exception {
 

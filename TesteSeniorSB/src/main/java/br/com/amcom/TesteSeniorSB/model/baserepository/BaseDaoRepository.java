@@ -65,7 +65,7 @@ public class BaseDaoRepository<T, R extends CrudRepository<T, Long>> implements 
 	}
 
 	@Override
-	public Iterable<T> obter(ActionFiltrar filtrar) {
+	public List<T> obter(ActionFiltrar filtrar) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(type);

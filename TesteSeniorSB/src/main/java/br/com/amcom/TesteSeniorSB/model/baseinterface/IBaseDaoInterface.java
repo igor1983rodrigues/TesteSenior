@@ -1,5 +1,7 @@
 package br.com.amcom.TesteSeniorSB.model.baseinterface;
 
+import java.util.List;
+
 import br.com.amcom.TesteSeniorSB.model.baseinterface.Runs.ActionFiltrar;
 
 public interface IBaseDaoInterface<T> {
@@ -13,7 +15,7 @@ public interface IBaseDaoInterface<T> {
 
 	T obterPorChave(int parametros);
 
-	Iterable<T> obter(ActionFiltrar filtrar);
+	List<T> obter(ActionFiltrar filtrar);
 
 	Iterable<T> obterTodos();
 }
