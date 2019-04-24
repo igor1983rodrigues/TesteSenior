@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UsuarioService extends BaseService {
 
     constructor(private httpClient: HttpClient) {
@@ -12,9 +12,13 @@ export class UsuarioService extends BaseService {
     }
 
     logar(login: string, senha: string): Observable<any> {
-        return this.httpClient.post(`${this.getUrl()}/login`, {
+        const body = {
             login: login,
             senha: senha
-        });
+        };
+        const header = new HttpHeaders();
+        header.append('Content-Type', 'application/x-www-form-urlencoded');
+        
+        return this.httpClient.post(`${this.getUrl()}/login`, body);
     }
 }

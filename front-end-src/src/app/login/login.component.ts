@@ -26,13 +26,14 @@ export class LoginComponent implements OnInit {
   }
 
   logar() {
-    debugger;
     const login = this.formLogin.get("inputEmail").value;
     const senha = this.formLogin.get("inputPassword").value;
     this.us.logar(login, senha).subscribe(res => {
+      alert('Sucesso');
       this.router.navigate(['/']);
     }, error => {
-
+      console.error(error);
+      alert('falha');
     });
   }
 

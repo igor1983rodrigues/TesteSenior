@@ -8,12 +8,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import br.com.amcom.TesteSeniorBackend.controller.UserController;
+import br.com.amcom.TesteSeniorBackend.configure.Uteis.Respostas;
+import br.com.amcom.TesteSeniorBackend.controller.UsuarioController;
 
 @Path("/usuario")
 @Produces(MediaType.APPLICATION_JSON)
-public class UsuarioService extends UserController implements Serializable {
+public class UsuarioService extends UsuarioController implements Serializable {
 
 	/**
 	 * 
@@ -25,9 +25,9 @@ public class UsuarioService extends UserController implements Serializable {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response login(@FormParam("login") String login,@FormParam("senha") String senha) {
 		try {
-			return Response.status(200).entity(autenticar(login, senha)).build();
+			return Respostas.Ok(autenticar(login, senha));
 		} catch (Exception ex) {
-			return Response.status(500).entity(ex).build();
+			return Respostas.Unauthorized(ex);
 		}
 	}
 

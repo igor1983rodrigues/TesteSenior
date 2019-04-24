@@ -10,7 +10,7 @@ export class BaseService {
     
     protected getBasePath(): string {
         if (isDevMode()) {
-            return 'http://localhost:8080/api';
+            return 'http://localhost:8080/TesteSeniorBackend/api';
         } else {
             return '/api';
         }
