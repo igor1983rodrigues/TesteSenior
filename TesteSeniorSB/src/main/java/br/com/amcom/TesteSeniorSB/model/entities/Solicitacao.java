@@ -41,13 +41,69 @@ public class Solicitacao implements Serializable {
 	private String emailSolicitacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dt_aprovado_solicitacao", nullable = false)
+	@Column(name = "dt_aprovado_solicitacao", nullable = true)
 	private Date dtAprovadoSolicitacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dt_reprovado_solicitacao", nullable = false)
+	@Column(name = "dt_reprovado_solicitacao", nullable = true)
 	private Date dtReprovadoSolicitacao;
 	
-	@Column(name = "motivo_reprovacao_solicitacao", length = 256, nullable = false)
+	@Column(name = "motivo_reprovacao_solicitacao", length = 256, nullable = true)
 	private String motivoReprovacaoSolicitacao;
+
+	public long getIdSolicitacao() {
+		return idSolicitacao;
+	}
+
+	public void setIdSolicitacao(long idSolicitacao) {
+		this.idSolicitacao = idSolicitacao;
+	}
+
+	public String getSolicitanteSolicitacao() {
+		return solicitanteSolicitacao;
+	}
+
+	public void setSolicitanteSolicitacao(String solicitanteSolicitacao) {
+		this.solicitanteSolicitacao = solicitanteSolicitacao;
+	}
+
+	public String getDescricaoItemSolicitacao() {
+		return descricaoItemSolicitacao;
+	}
+
+	public void setDescricaoItemSolicitacao(String descricaoItemSolicitacao) {
+		this.descricaoItemSolicitacao = descricaoItemSolicitacao;
+	}
+
+	public double getValorSolicitacao() {
+		return valorSolicitacao;
+	}
+
+	public void setValorSolicitacao(double valorSolicitacao) {
+		this.valorSolicitacao = valorSolicitacao;
+	}
+
+	public String getEmailSolicitacao() {
+		return emailSolicitacao;
+	}
+
+	public void setEmailSolicitacao(String emailSolicitacao) {
+		this.emailSolicitacao = emailSolicitacao;
+	}
+
+	public Date getDtReprovadoSolicitacao() {
+		return dtReprovadoSolicitacao;
+	}
+
+	public void setDtReprovadoSolicitacao(Date dtReprovadoSolicitacao) {
+		this.dtReprovadoSolicitacao = dtReprovadoSolicitacao;
+	}
+
+	public String getMotivoReprovacaoSolicitacao() {
+		return motivoReprovacaoSolicitacao;
+	}
+
+	public void setMotivoReprovacaoSolicitacao(String motivoReprovacaoSolicitacao) {
+		this.motivoReprovacaoSolicitacao = motivoReprovacaoSolicitacao;
+	}
 }

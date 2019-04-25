@@ -16,8 +16,6 @@ export class UsuarioService extends BaseService {
             login: login,
             senha: senha
         };
-        const header = new HttpHeaders();
-        header.append('Content-Type', 'application/x-www-form-urlencoded');
         
         return this.httpClient.post(`${this.getUrl()}/login`, body);
     }

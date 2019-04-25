@@ -29,5 +29,9 @@ public class Uteis {
 //			map.put("Message", ex.getMessage());
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex);
 		}
-}
+
+		public static <T extends Exception> ResponseEntity<T> internalServerError(T ex) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+		}
+	}
 }
