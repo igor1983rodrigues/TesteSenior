@@ -23,7 +23,10 @@ public class Perfil implements Serializable {
 	@Column(name="id_perfil")
 	private int idPerfil;
 
-	@Column(name="nome_perfil")
+	@Column(name="sigla_perfil", unique = true, length = 3)
+	private String siglaPerfil;
+
+	@Column(name="nome_perfil", unique = true, length = 32)
 	private String nomePerfil;
 
 	//bi-directional many-to-one association to Usuario
@@ -37,6 +40,14 @@ public class Perfil implements Serializable {
 
 	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
+	}
+
+	public String getSiglaPerfil() {
+		return siglaPerfil;
+	}
+
+	public void setSiglaPerfil(String siglaPerfil) {
+		this.siglaPerfil = siglaPerfil;
 	}
 
 	public String getNomePerfil() {

@@ -8,17 +8,17 @@ import { Solicitacao } from 'src/entities/solicitacao.entity';
 export class SolicitacaoService {
     private dadosEstaticos: Solicitacao[] = [        {
             idSolicitacao: 1,
-            nomeSolicitante: "Alguém de Algum Lugar",
-            descricaoItem: "Pilhas AAA",
-            emailSolicitante: "alguem@algullugar.com.gn",
-            valorSolicitado: 250
+            solicitanteSolicitacao: "Alguém de Algum Lugar",
+            descricaoItemSolicitacao: "Pilhas AAA",
+            emailSolicitacao: "alguem@algullugar.com.gn",
+            valorSolicitacao: 250
         },
         {
             idSolicitacao: 2,
-            nomeSolicitante: "Namorado da Fátima Bernardes",
-            descricaoItem: "Lacrador automatizado",
-            emailSolicitante: "dep.tuliogadelha@camara.leg.br",
-            valorSolicitado: 24171
+            solicitanteSolicitacao: "Namorado da Fátima Bernardes",
+            descricaoItemSolicitacao: "Lacrador automatizado",
+            emailSolicitacao: "dep.tuliogadelha@camara.leg.br",
+            valorSolicitacao: 24171
         }    ];
 
     constructor() { }

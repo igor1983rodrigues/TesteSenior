@@ -4,25 +4,34 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './services/guard/auth.guard';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { AlmoxarifeGuard } from './services/guard/almoxarife.guard';
+import { AdministrativoGuard } from './services/guard/administrativo.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/solicitante', pathMatch: 'full' },
-  { path: 'login', loadChildren: './login/login.module#LoginModule' },
-  { path: 'solicitante', loadChildren: './solicitante/solicitante.module#SolicitanteModule' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path: 'root',
-    loadChildren: './root/root.module#RootModule',
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule',
     canActivate: [AuthGuard]
   },
   {
+    path: 'solicitante',
+    loadChildren: './solicitante/solicitante.module#SolicitanteModule',
+  },
+  // {
+  //   path: 'root',
+  //   loadChildren: './root/root.module#RootModule',
+  //   canActivate: [AuthGuard]
+  // },
+  {
     path: 'almoxarife',
     loadChildren: './almoxarife/almoxarife.module#AlmoxarifeModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AlmoxarifeGuard]
   },
   {
     path: 'administracao',
     loadChildren: './administracao/administracao.module#AdministracaoModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdministrativoGuard]
   },
   { path: '**', component: NotFoundComponent }
 ];

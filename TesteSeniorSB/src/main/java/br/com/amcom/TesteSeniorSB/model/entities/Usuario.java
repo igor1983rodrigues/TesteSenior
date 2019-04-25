@@ -14,7 +14,8 @@ import java.util.Date;
 @Table(name="tbl_usuario")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -2975117582632629652L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,13 +30,13 @@ public class Usuario implements Serializable {
 	@Column(name="dt_excluido_usuario")
 	private Date dataExcluidoUsuario;
 
-	@Column(name="email_usuario", unique = true)
+	@Column(name="email_usuario", unique = true, length = 128)
 	private String emailUsuario;
 
-	@Column(name="nome_usuario")
+	@Column(name="nome_usuario", length = 128)
 	private String nomeUsuario;
 
-	@Column(name="senha_usuario")
+	@Column(name="senha_usuario", length = 64)
 	private String senhaUsuario;
 
 	//bi-directional many-to-one association to Perfil

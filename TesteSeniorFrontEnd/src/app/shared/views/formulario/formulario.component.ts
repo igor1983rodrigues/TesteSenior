@@ -28,10 +28,10 @@ export class FormularioComponent implements OnInit {
       }
 
       this.formSolicitante = this.formBuilder.group({
-        nomeSolicitante: [this.solicitacao.nomeSolicitante, [Validators.required, Validators.maxLength(64)]],
-        emailSolicitante: [this.solicitacao.emailSolicitante, [Validators.required, Validators.email]],
-        descItem: [this.solicitacao.descricaoItem, [Validators.required, Validators.maxLength(256)]],
-        precoProduto: [this.solicitacao.valorSolicitado, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
+        nomeSolicitante: [this.solicitacao.solicitanteSolicitacao, [Validators.required, Validators.maxLength(64)]],
+        emailSolicitante: [this.solicitacao.emailSolicitacao, [Validators.required, Validators.email]],
+        descItem: [this.solicitacao.descricaoItemSolicitacao, [Validators.required, Validators.maxLength(256)]],
+        precoProduto: [this.solicitacao.valorSolicitacao, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
       });
     });
   }

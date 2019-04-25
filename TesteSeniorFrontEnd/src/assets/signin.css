@@ -18,6 +18,8 @@ div#container-login {
   background-color: #f5f5f5;
 }
 
+#navbar {display: none;}
+
 div#container-login {
   position: fixed;
   top: 0;

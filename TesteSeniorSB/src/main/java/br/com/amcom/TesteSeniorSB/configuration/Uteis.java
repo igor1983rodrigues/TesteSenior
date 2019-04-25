@@ -3,9 +3,6 @@ package br.com.amcom.TesteSeniorSB.configuration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
@@ -27,10 +24,10 @@ public class Uteis {
 			return ResponseEntity.ok(entity);
 		}
 
-		public static <T extends Exception> ResponseEntity<Map<String, String>> unauthorized(T ex) {
-			Map<String, String> map = new HashMap<>();
-			map.put("Message", ex.getMessage());
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(map);
+		public static <T extends Exception> ResponseEntity<T> unauthorized(T ex) {
+//			Map<String, String> map = new HashMap<>();
+//			map.put("Message", ex.getMessage());
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex);
 		}
 }
 }
