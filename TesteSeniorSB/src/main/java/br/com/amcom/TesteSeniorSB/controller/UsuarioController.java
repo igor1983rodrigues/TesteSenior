@@ -6,13 +6,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
-import br.com.amcom.TesteSeniorSB.model.dao.UsuarioDao;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.amcom.TesteSeniorSB.model.entities.Usuario;
-import br.com.amcom.TesteSeniorSB.model.idao.IUsuarioDao;
+import br.com.amcom.TesteSeniorSB.model.repositories.UsuarioRepositorio;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -21,21 +23,27 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class UsuarioController {
 
 	private static final String FRASE_SEGREDO = Instant.now().toString();
-	private IUsuarioDao iUsuarioDao;
+	// private IUsuarioDao iUsuarioDao;
+
+	@Autowired
+	private UsuarioRepositorio usuarioRepositorio;
 
 	public UsuarioController() {
-		this.iUsuarioDao = new UsuarioDao();
+//		this.iUsuarioDao = new UsuarioDao();
 	}
 
 	protected Object autenticar(String usuarioNome, String senha) throws Exception {
 
-		Usuario usuario = iUsuarioDao.validar(usuarioNome, senha);
-		if (Objects.isNull(usuario)) {
+		Set<Usuario> usuarios = usuarioRepositorio.getUsuario(usuarioNome, senha);
+		if (Objects.isNull(usuarios) || usuarios.size() != 1) {
 			throw new Exception("Usuário ou senha não correspondente");
 		}
 
-		Map<String, String> res = new HashMap<>();
-		res.put("token", gerarToken(usuario, 1));
+		Map<String, Object> res = new HashMap<>();
+		usuarios.forEach(usuario -> {
+			res.put("token", gerarToken(usuario, 1));
+			res.put("perfil", usuario.getPerfil());
+		});
 		return res;
 	}
 

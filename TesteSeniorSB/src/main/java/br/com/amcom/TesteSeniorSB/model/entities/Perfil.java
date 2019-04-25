@@ -28,14 +28,11 @@ public class Perfil implements Serializable {
 
 	//bi-directional many-to-one association to Usuario
 	@JsonIgnore
-	@OneToMany(mappedBy="tblPerfil")
-	private Set<Usuario> tblUsuarios;
-
-	public Perfil() {
-	}
+	@OneToMany(mappedBy="perfil")
+	private Set<Usuario> usuarios;
 
 	public int getIdPerfil() {
-		return this.idPerfil;
+		return idPerfil;
 	}
 
 	public void setIdPerfil(int idPerfil) {
@@ -43,33 +40,18 @@ public class Perfil implements Serializable {
 	}
 
 	public String getNomePerfil() {
-		return this.nomePerfil;
+		return nomePerfil;
 	}
 
 	public void setNomePerfil(String nomePerfil) {
 		this.nomePerfil = nomePerfil;
 	}
 
-	public Set<Usuario> getTblUsuarios() {
-		return this.tblUsuarios;
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setTblUsuarios(Set<Usuario> tblUsuarios) {
-		this.tblUsuarios = tblUsuarios;
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
-
-	public Usuario addTblUsuario(Usuario tblUsuario) {
-		getTblUsuarios().add(tblUsuario);
-		tblUsuario.setTblPerfil(this);
-
-		return tblUsuario;
-	}
-
-	public Usuario removeTblUsuario(Usuario tblUsuario) {
-		getTblUsuarios().remove(tblUsuario);
-		tblUsuario.setTblPerfil(null);
-
-		return tblUsuario;
-	}
-
 }

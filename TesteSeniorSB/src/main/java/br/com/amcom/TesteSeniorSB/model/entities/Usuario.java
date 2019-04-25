@@ -2,6 +2,7 @@ package br.com.amcom.TesteSeniorSB.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -28,7 +29,7 @@ public class Usuario implements Serializable {
 	@Column(name="dt_excluido_usuario")
 	private Date dataExcluidoUsuario;
 
-	@Column(name="email_usuario")
+	@Column(name="email_usuario", unique = true)
 	private String emailUsuario;
 
 	@Column(name="nome_usuario")
@@ -40,13 +41,10 @@ public class Usuario implements Serializable {
 	//bi-directional many-to-one association to Perfil
 	@ManyToOne
 	@JoinColumn(name="id_perfil")
-	private Perfil tblPerfil;
-
-	public Usuario() {
-	}
+	private Perfil perfil;
 
 	public int getIdUsuario() {
-		return this.idUsuario;
+		return idUsuario;
 	}
 
 	public void setIdUsuario(int idUsuario) {
@@ -54,7 +52,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Date getDataCriadoUsuario() {
-		return this.dataCriadoUsuario;
+		return dataCriadoUsuario;
 	}
 
 	public void setDataCriadoUsuario(Date dataCriadoUsuario) {
@@ -62,7 +60,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Date getDataExcluidoUsuario() {
-		return this.dataExcluidoUsuario;
+		return dataExcluidoUsuario;
 	}
 
 	public void setDataExcluidoUsuario(Date dataExcluidoUsuario) {
@@ -70,7 +68,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getEmailUsuario() {
-		return this.emailUsuario;
+		return emailUsuario;
 	}
 
 	public void setEmailUsuario(String emailUsuario) {
@@ -78,7 +76,7 @@ public class Usuario implements Serializable {
 	}
 
 	public String getNomeUsuario() {
-		return this.nomeUsuario;
+		return nomeUsuario;
 	}
 
 	public void setNomeUsuario(String nomeUsuario) {
@@ -86,19 +84,18 @@ public class Usuario implements Serializable {
 	}
 
 	public String getSenhaUsuario() {
-		return this.senhaUsuario;
+		return senhaUsuario;
 	}
 
 	public void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	public Perfil getTblPerfil() {
-		return this.tblPerfil;
+	public Perfil getPerfil() {
+		return perfil;
 	}
 
-	public void setTblPerfil(Perfil tblPerfil) {
-		this.tblPerfil = tblPerfil;
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
-
 }

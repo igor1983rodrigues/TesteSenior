@@ -12,22 +12,28 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
 import br.com.amcom.TesteSeniorSB.model.baseinterface.IBaseDaoInterface;
 import br.com.amcom.TesteSeniorSB.model.baseinterface.Runs.ActionFiltrar;
 
+@Service
 public class BaseDaoRepository<T, R extends CrudRepository<T, Long>> implements IBaseDaoInterface<T> {
 
-	@Autowired
+//	@Autowired
 	protected final EntityManagerFactory factory;
 
-	@PersistenceContext
+//	@PersistenceContext
 	protected EntityManager entityManager;
 
-	@Autowired // This means to get the bean called taskRepository
+//	@Autowired // This means to get the bean called taskRepository
 	private R repository;
 
 	private final Class<T> type;
+	
+	public BaseDaoRepository() {
+		this(null, null);
+	}
 
 	public BaseDaoRepository(Class<T> type) {
 		this(type, null);
