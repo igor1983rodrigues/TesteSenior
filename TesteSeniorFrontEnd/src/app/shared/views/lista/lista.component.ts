@@ -14,7 +14,9 @@ export class ListaComponent implements OnInit {
   constructor(private solicitacaoService: SolicitacaoService) { }
 
   ngOnInit() {
-    this.solicitacaoList = this.solicitacaoService.listSolicitacao();
+    this.solicitacaoService
+      .listSolicitacao()
+      .subscribe(lista => this.solicitacaoList = lista, error => alert(error.message));
   }
 
 }

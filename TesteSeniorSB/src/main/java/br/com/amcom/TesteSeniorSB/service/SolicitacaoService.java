@@ -1,6 +1,8 @@
 package br.com.amcom.TesteSeniorSB.service;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +17,40 @@ import br.com.amcom.TesteSeniorSB.model.entities.Solicitacao;
 @CrossOrigin(origins = "*")
 public class SolicitacaoService extends SolicitacaoController {
 
+	@GetMapping
+	@Override
+	public Object listarTodos() {
+		try {
+			return Respostas.ok(super.listarTodos());
+		} catch (Exception ex) {
+			return Respostas.internalServerError(ex);
+		}
+	}
+
+	@GetMapping("/emaberto")
+	@Override
+	public Object listarEmAberto() {
+		try {
+			return Respostas.ok(super.listarEmAberto());
+		} catch (Exception ex) {
+			return Respostas.internalServerError(ex);
+		}
+	}
+
+	@GetMapping("/{id}")
+	public Object getSolicitacaoId(@PathVariable("id") long id) {
+		try {
+			return Respostas.ok(super.getId(id));
+		} catch (Exception ex) {
+			return Respostas.internalServerError(ex);
+		}
+	}
+
 	@PostMapping
 	public Object SalvarSolicitacao(@RequestBody Solicitacao solicitacao) {
 		try {
 			return Respostas.ok(salvar(solicitacao));
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			return Respostas.internalServerError(ex);
 		}
 	}

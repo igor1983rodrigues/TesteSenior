@@ -21,5 +21,17 @@ public class SolicitacaoController {
 		map.put("message", "Solicitação registrada no sistema!");
 		return map;
 	}
+
+	public Object listarTodos() {
+		return this.solicitacaoRepositorio.findAll();
+	}
+
+	public Object listarEmAberto() {
+		return this.solicitacaoRepositorio.listarEmAberto();
+	}
+
+	public Object getId(long id) {
+		return this.solicitacaoRepositorio.findById(id);
+	}
 	
 }

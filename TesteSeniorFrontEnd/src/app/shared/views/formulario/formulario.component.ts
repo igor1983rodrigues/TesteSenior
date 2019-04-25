@@ -23,34 +23,37 @@ export class FormularioComponent implements OnInit {
     private router: Router
   ) { }
 
-  private buildForm() {
+  private carregarInformacoes() {
     this.activatedRoute.params.subscribe((res: { id: number }) => {
       if (!!res.id) {
-        this.solicitacao = this.solicitacaoService.get(res.id);
+        this.solicitacaoService.get(res.id).subscribe(s => this.buildForm(s));
       } else {
-        this.solicitacao = new Solicitacao();
+        this.buildForm(new Solicitacao());
       }
+    });
+  }
 
-      this.formSolicitante = this.formBuilder.group({
-        nomeSolicitante: [this.solicitacao.solicitanteSolicitacao, [Validators.required, Validators.maxLength(64)]],
-        emailSolicitante: [this.solicitacao.emailSolicitacao, [Validators.required, Validators.email]],
-        descItem: [this.solicitacao.descricaoItemSolicitacao, [Validators.required, Validators.maxLength(256)]],
-        precoProduto: [this.solicitacao.valorSolicitacao, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
-      });
+  private buildForm(solicitacao: Solicitacao) {
+    this.solicitacao = solicitacao;
+    this.formSolicitante = this.formBuilder.group({
+      nomeSolicitante: [this.solicitacao.solicitanteSolicitacao, [Validators.required, Validators.maxLength(64)]],
+      emailSolicitante: [this.solicitacao.emailSolicitacao, [Validators.required, Validators.email]],
+      descItem: [this.solicitacao.descricaoItemSolicitacao, [Validators.required, Validators.maxLength(256)]],
+      precoProduto: [this.solicitacao.valorSolicitacao, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
     });
   }
 
   ngOnInit() {
     this.modalFeedback = 0;
-    this.buildForm();
+    this.carregarInformacoes();
   }
 
   enviarSolicitacao(): boolean {
     if (this.formSolicitante.valid) {
       this.solicitacao.solicitanteSolicitacao = this.formSolicitante.get("nomeSolicitante").value;
-      this.solicitacao.emailSolicitacao=this.formSolicitante.get("emailSolicitante").value;;
-      this.solicitacao.descricaoItemSolicitacao=this.formSolicitante.get("descItem").value;
-      this.solicitacao.valorSolicitacao=this.formSolicitante.get("precoProduto").value;
+      this.solicitacao.emailSolicitacao = this.formSolicitante.get("emailSolicitante").value;;
+      this.solicitacao.descricaoItemSolicitacao = this.formSolicitante.get("descItem").value;
+      this.solicitacao.valorSolicitacao = this.formSolicitante.get("precoProduto").value;
 
       this.solicitacaoService.salvar(this.solicitacao).subscribe(res => this.sucesso(res), err => this.error(err));
     } else {
@@ -58,17 +61,17 @@ export class FormularioComponent implements OnInit {
     }
   }
 
-  private sucesso({id, message}) {
+  private sucesso({ id, message }) {
     this.modalFeedback = id;
     this.modalFeedbackMessage = message;
     this.formSolicitante.reset();
   }
 
-  private error({error}){
+  private error({ error }) {
     this.modalFeedback = -1;
     this.modalFeedbackMessage = error.message;
   }
-  
+
   fecharFeedBack(): void {
     this.modalFeedback = 0;
     this.modalFeedbackMessage = "";

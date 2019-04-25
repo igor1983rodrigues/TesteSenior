@@ -16,5 +16,5 @@ public interface SolicitacaoRepositorio extends CrudRepository<Solicitacao, Long
 			"where	s.idSolicitacao = s.idSolicitacao\r\n" + 
 			"and		s.dtAprovadoSolicitacao is null\r\n" + 
 			"and		s.dtReprovadoSolicitacao is null")
-	Set<Solicitacao> getSolicitacaoAberta();
+	Set<Solicitacao> listarEmAberto();
 }
