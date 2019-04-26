@@ -1,6 +1,7 @@
 package br.com.amcom.TesteSeniorSB.model.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -35,10 +36,13 @@ public class Solicitacao implements Serializable {
 	private String descricaoItemSolicitacao;
 	
 	@Column(name = "valor_solicitacao", nullable = false)
-	double valorSolicitacao;
+	private double valorSolicitacao;
 	
 	@Column(name = "email_solicitacao", length = 128, nullable = false)
 	private String emailSolicitacao;
+	
+	@Column(name = "dt_criacao_solicitacao", nullable = false, columnDefinition = "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP")
+	private Date dtCriacaoSolicitacao = Date.from(Instant.now());
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_aprovado_solicitacao", nullable = true)
@@ -89,6 +93,22 @@ public class Solicitacao implements Serializable {
 
 	public void setEmailSolicitacao(String emailSolicitacao) {
 		this.emailSolicitacao = emailSolicitacao;
+	}
+
+	public Date getDtCriacaoSolicitacao() {
+		return dtCriacaoSolicitacao;
+	}
+
+	public void setDtCriacaoSolicitacao(Date dtCriacaoSolicitacao) {
+		this.dtCriacaoSolicitacao = dtCriacaoSolicitacao;
+	}
+
+	public Date getDtAprovadoSolicitacao() {
+		return dtAprovadoSolicitacao;
+	}
+
+	public void setDtAprovadoSolicitacao(Date dtAprovadoSolicitacao) {
+		this.dtAprovadoSolicitacao = dtAprovadoSolicitacao;
 	}
 
 	public Date getDtReprovadoSolicitacao() {

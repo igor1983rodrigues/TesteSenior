@@ -12,9 +12,9 @@ import { SessionService } from './session.service';
 export class SolicitacaoService extends BaseService {
 
     constructor(
-        private ss:SessionService,
+        private ss: SessionService,
         private httpClient: HttpClient
-        ) {
+    ) {
         super();
         this.relativePath = '/solicitacao';
     }
@@ -25,13 +25,23 @@ export class SolicitacaoService extends BaseService {
         return this.httpClient.post(this.getUrl(), model);
     }
 
+    atualizar(model: Solicitacao) {
+        const url = `${this.getUrl()}/${model.idSolicitacao || 0}`;
+        return this.httpClient.put(url, model);
+    }
+
     listSolicitacao(): Observable<Solicitacao[]> {
         let url = this.getUrl();
-        
+
         if (this.ss.isPerfilAlmoxarife()) {
             url += '/emaberto';
         }
 
-        return this.httpClient.get<Solicitacao[]>(this.getUrl());
+        return this.httpClient.get<Solicitacao[]>(url);
+    }
+
+    filtrar(filtro: any): Observable<Solicitacao[]> {
+        const f: string[] = ['filtro:' + JSON.stringify(filtro)];
+        return this.httpClient.get<Solicitacao[]>(`${this.getUrl()}/filtro`, {params: filtro});
     }
 }

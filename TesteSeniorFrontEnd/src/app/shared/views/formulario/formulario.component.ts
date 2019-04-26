@@ -23,28 +23,42 @@ export class FormularioComponent implements OnInit {
     private router: Router
   ) { }
 
+  private preencherForm(s: Solicitacao): Solicitacao {
+    this.formSolicitante.get("nomeSolicitante").setValue(s.solicitanteSolicitacao);
+    this.formSolicitante.get("emailSolicitante").setValue(s.emailSolicitacao);
+    this.formSolicitante.get("descItem").setValue(s.descricaoItemSolicitacao);
+    this.formSolicitante.get("precoProduto").setValue(s.valorSolicitacao);
+
+    return s;
+  }
+
   private carregarInformacoes() {
     this.activatedRoute.params.subscribe((res: { id: number }) => {
       if (!!res.id) {
-        this.solicitacaoService.get(res.id).subscribe(s => this.buildForm(s));
+        this.solicitacaoService.get(res.id).subscribe(s => this.solicitacao = this.preencherForm(s));
       } else {
-        this.buildForm(new Solicitacao());
+        this.solicitacao = this.preencherForm({
+          descricaoItemSolicitacao: null,
+          emailSolicitacao: null,
+          solicitanteSolicitacao: null,
+          valorSolicitacao: 0
+        });
       }
     });
   }
 
-  private buildForm(solicitacao: Solicitacao) {
-    this.solicitacao = solicitacao;
+  private buildForm() {
     this.formSolicitante = this.formBuilder.group({
-      nomeSolicitante: [this.solicitacao.solicitanteSolicitacao, [Validators.required, Validators.maxLength(64)]],
-      emailSolicitante: [this.solicitacao.emailSolicitacao, [Validators.required, Validators.email]],
-      descItem: [this.solicitacao.descricaoItemSolicitacao, [Validators.required, Validators.maxLength(256)]],
-      precoProduto: [this.solicitacao.valorSolicitacao, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
+      nomeSolicitante: [null, [Validators.required, Validators.maxLength(64)]],
+      emailSolicitante: [null, [Validators.required, Validators.email]],
+      descItem: [null, [Validators.required, Validators.maxLength(256)]],
+      precoProduto: [0, [Validators.required, Validators.min(3), Validators.max(999999999.99)]]
     });
   }
 
   ngOnInit() {
     this.modalFeedback = 0;
+    this.buildForm()
     this.carregarInformacoes();
   }
 
@@ -77,8 +91,25 @@ export class FormularioComponent implements OnInit {
     this.modalFeedbackMessage = "";
   }
 
-  reprovar(): void {
-    alert("reprovado");
+  aprovar() : void {
+    debugger;
+    this.solicitacao.dtAprovadoSolicitacao = new Date();
+    this.solicitacaoService.atualizar(this.solicitacao).subscribe(res => {
+      this.voltar();
+    }, (error) => alert(error.message));
   }
 
+  reprovar(): void {
+    this.solicitacao.dtReprovadoSolicitacao = new Date();
+    this.solicitacaoService.atualizar(this.solicitacao).subscribe(res => {
+      this.voltar();
+    }, (error) => alert(error.message));
+  }
+
+  voltar = () => {
+    let arr: string[] = this.router.url.split("/");
+    arr.pop();
+    arr.pop();
+    this.router.navigate(arr);
+  }
 }

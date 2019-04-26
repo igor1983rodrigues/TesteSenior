@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AdministracaoComponent } from './administracao.component';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
 import { AdministracaoRoutingModule } from './administracao-routing.module';
+import { ViewsModule } from '../shared/views/views.module';
+
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
-  declarations: [AdministracaoComponent],
+  declarations: [],
   imports: [
     CommonModule,
+    ViewsModule,
     AdministracaoRoutingModule
   ],
-  exports: [AdministracaoComponent]
+  exports: []
 })
 export class AdministracaoModule { }

@@ -9,8 +9,8 @@ import br.com.amcom.TesteSeniorSB.model.repositories.UsuarioRepositorio;
 
 public class UsuarioDao extends BaseDaoRepository<Usuario, UsuarioRepositorio> implements IUsuarioDao {
 
-	public UsuarioDao() {
-		super(Usuario.class);
+	public UsuarioDao(UsuarioRepositorio repositorio) {
+		super(Usuario.class, repositorio);
 	}
 
 	@Override

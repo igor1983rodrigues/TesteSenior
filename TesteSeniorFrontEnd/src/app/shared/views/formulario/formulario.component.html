@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="nomeSolicitante">Nome do solicitante</label>
       <input type="text" class="form-control" id="nomeSolicitante" formControlName="nomeSolicitante"
-        placeholder="Insira o nome do solicitante" [readonly]="!!solicitacao?.idSolicitacao">
+        placeholder="Insira o nome do solicitante" [readonly]="!!solicitacao?.idSolicitacao" autofocus>
     </div>
 
     <div class="form-group">
@@ -24,16 +24,21 @@
         [readonly]="!!solicitacao?.idSolicitacao"></textarea>
     </div>
 
-    <button class="btn btn-primary" type="submit" *ngIf="!solicitacao?.idSolicitacao"
-      [disabled]="!formSolicitante.valid">Enviar
-      solicitação</button>
+    <div class="row w-100 ml-0">
+      <button class="btn btn-primary" type="submit" *ngIf="!solicitacao?.idSolicitacao"
+        [disabled]="!formSolicitante.valid">Enviar
+        solicitação</button>
 
-    <button class="btn btn-success" type="button" *ngIf="!!solicitacao?.idSolicitacao"
-      [disabled]="!!solicitacao?.aprovado && !!solicitacao?.reprovado">Aprovar</button>
+      <button class="btn btn-success" type="button" *ngIf="!!solicitacao?.idSolicitacao"
+        [disabled]="!!solicitacao?.dtAprovadoSolicitacao && !!solicitacao?.dtReprovadoSolicitacao" (click)="aprovar()">Aprovar</button>
 
-    <button class="btn btn-danger ml-2" type="button" *ngIf="!!solicitacao?.idSolicitacao"
-      [disabled]="!!solicitacao?.aprovado && !!solicitacao?.reprovado" data-toggle="modal"
-      data-target="#reprovarModal">Reprovar</button>
+      <button class="btn btn-danger ml-2 mr-auto" type="button" *ngIf="!!solicitacao?.idSolicitacao"
+        [disabled]="!!solicitacao?.dtAprovadoSolicitacao && !!solicitacao?.dtReprovadoSolicitacao" data-toggle="modal"
+        data-target="#reprovarModal">Reprovar</button>
+
+      <button class="btn btn-secondary mr-0" type="button" (click)="voltar()"
+        *ngIf="!!solicitacao?.idSolicitacao">Voltar</button>
+    </div>
   </form>
 </app-container-common>
 
@@ -49,13 +54,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <textarea name="" id="" cols="30" rows="10" class="form-control" [(ngModel)]="solicitacao.motivoReprovacao">
+        <textarea name="" id="" cols="30" rows="10" class="form-control"
+          [(ngModel)]="solicitacao.motivoReprovacaoSolicitacao" autofocus>
         </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" [disabled]="!solicitacao.motivoReprovacao"
-          (click)="reprovar()">Concluir</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"
+          [disabled]="!solicitacao.motivoReprovacaoSolicitacao" (click)="reprovar()">Concluir</button>
       </div>
     </div>
   </div>
@@ -66,7 +72,8 @@
   [ngStyle]="{'display': modalFeedback != 0?'block':'none'}" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header text-white" [ngClass]="{'bg-danger': modalFeedback < 0, 'bg-success': modalFeedback > 0}">
+      <div class="modal-header text-white"
+        [ngClass]="{'bg-danger': modalFeedback < 0, 'bg-success': modalFeedback > 0}">
         <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -76,7 +83,7 @@
         <p>{{modalFeedbackMessage}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="fecharFeedBack()" >Fechar</button>
+        <button type="button" class="btn btn-secondary" (click)="fecharFeedBack()">Fechar</button>
       </div>
     </div>
   </div>

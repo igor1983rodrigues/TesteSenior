@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdministracaoComponent } from './administracao.component';
 import { AuthGuard } from '../services/guard/auth.guard';
+import { ListaComponent } from '../shared/views/lista/lista.component';
 
 const administracaoRoutes: Routes = [{
     path: '',
-    component: AdministracaoComponent,
+    component: ListaComponent,
     canActivate: [AuthGuard],
     children: []
 }];
