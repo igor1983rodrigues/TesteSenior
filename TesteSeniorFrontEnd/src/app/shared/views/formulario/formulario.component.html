@@ -3,13 +3,13 @@
     <div class="form-group">
       <label for="nomeSolicitante">Nome do solicitante</label>
       <input type="text" class="form-control" id="nomeSolicitante" formControlName="nomeSolicitante"
-        placeholder="Insira o nome do solicitante" [readonly]="!!solicitacao?.idSolicitacao" autofocus>
+        placeholder="Insira o nome do solicitante" [readonly]="!!solicitacao?.idSolicitacao || isLogado()" autofocus>
     </div>
 
     <div class="form-group">
       <label for="emailSolicitante">Email</label>
       <input type="email" class="form-control" id="emailSolicitante" formControlName="emailSolicitante"
-        placeholder="name@example.com" [readonly]="!!solicitacao?.idSolicitacao">
+        placeholder="name@example.com" [readonly]="!!solicitacao?.idSolicitacao || isLogado()">
     </div>
 
     <div class="form-group">

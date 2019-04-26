@@ -46,4 +46,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/almoxarife']);
     }
   }
+
+  abrirSolicitacao = ()  => this.router.navigate(['/solicitante'])
 }

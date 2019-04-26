@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Solicitacao } from 'src/entities/solicitacao.entity';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
+import { SessionService } from 'src/app/services/session.service';
+import { Usuario } from 'src/entities/usuario.entity';
 
 @Component({
   selector: 'app-formulario',
@@ -20,6 +22,7 @@ export class FormularioComponent implements OnInit {
     private solicitacaoService: SolicitacaoService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private ss:SessionService,
     private router: Router
   ) { }
 
@@ -39,8 +42,8 @@ export class FormularioComponent implements OnInit {
       } else {
         this.solicitacao = this.preencherForm({
           descricaoItemSolicitacao: null,
-          emailSolicitacao: null,
-          solicitanteSolicitacao: null,
+          emailSolicitacao: this.getUsuario().emailUsuario,
+          solicitanteSolicitacao: this.getUsuario().nomeUsuario,
           valorSolicitacao: 0
         });
       }
@@ -98,6 +101,10 @@ export class FormularioComponent implements OnInit {
       this.voltar();
     }, (error) => alert(error.message));
   }
+
+  isLogado = ():boolean => this.ss.isLogado()
+
+  getUsuario = ():Usuario => this.ss.getUsuario() || new Usuario();
 
   reprovar(): void {
     this.solicitacao.dtReprovadoSolicitacao = new Date();

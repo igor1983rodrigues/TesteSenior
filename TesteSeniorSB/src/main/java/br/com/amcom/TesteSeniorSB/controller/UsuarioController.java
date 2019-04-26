@@ -41,8 +41,12 @@ public class UsuarioController {
 
 		Map<String, Object> res = new HashMap<>();
 		usuarios.forEach(usuario -> {
-			res.put("token", gerarToken(usuario, 1));
 			res.put("perfil", usuario.getPerfil());
+			res.put("token", gerarToken(usuario, 1));
+
+			usuario.setSenhaUsuario(null);
+			usuario.setPerfil(null);
+			res.put("usuario", usuario);
 		});
 		return res;
 	}

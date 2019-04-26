@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from './services/session.service';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/entities/usuario.entity';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,8 @@ export class AppComponent implements OnInit {
   isLogado = () => this.ss.isLogado()
 
   isAlmoxarife = () => this.ss.isPerfilAlmoxarife()
+
+  getUsuario =():Usuario => this.ss.getUsuario() || new Usuario();
 
   isAdministracao = () => this.ss.isPerfilAdministrativo()
 

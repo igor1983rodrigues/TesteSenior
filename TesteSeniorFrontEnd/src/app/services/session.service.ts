@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Perfil } from 'src/entities/perfil.entity';
+import { Usuario } from 'src/entities/usuario.entity';
 
-@Injectable({providedIn: "root"})
+@Injectable({ providedIn: "root" })
 export class SessionService {
-    
+
     constructor() { }
-    
+
     isPerfilAlmoxarife() {
         return this.isPerfil("ALF");
     }
@@ -23,9 +24,17 @@ export class SessionService {
             && siglaPerfil.toLowerCase() == perfil.siglaPerfil.toLowerCase();
     }
 
-    isLogado = (): boolean =>  localStorage.length > 0 && !!this.getToken();
+    isLogado = (): boolean => localStorage.length > 0 && !!this.getToken();
 
-    getToken = (): string =>  localStorage.getItem('token');
+    getToken = (): string => localStorage.getItem('token');
+
+    getUsuario = (): Usuario => {
+        if (!!localStorage['usuario']) {
+            return JSON.parse(localStorage.getItem('usuario')) as Usuario
+        } else {
+            return null;
+        }
+    }
 
     getPerfil = (): Perfil => {
         if (!!localStorage['perfil']) {
@@ -35,9 +44,12 @@ export class SessionService {
         }
     };
 
-    logar = (stream: { token, perfil }) => {
+    logar = (stream: { token: string, perfil: Perfil, usuario: any }) => {
+        delete stream.usuario.senhaUsuario;
+        delete stream.usuario.perfil;
         localStorage['token'] = stream.token;
         localStorage['perfil'] = JSON.stringify(stream.perfil);
+        localStorage['usuario'] = JSON.stringify(stream.usuario);
     }
 
     deslogar = () => localStorage.clear()
