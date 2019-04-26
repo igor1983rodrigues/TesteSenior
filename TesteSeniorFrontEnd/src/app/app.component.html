@@ -1,6 +1,6 @@
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav id="navbar" class="shadow navbar navbar-expand-lg navbar-dark bg-senior-primary">
     <a class="navbar-brand" href="#">
-        <img src="" height="30" class="d-inline-block align-top" alt="">
+        <img src="../assets/svg/logo-desktop.svg" height="30" class="d-inline-block align-top" alt="">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -23,9 +23,14 @@
 
         
         <div class="form-inline my-2 my-lg-0">
-                <span class="mr-2 text-light">{{getUsuario().nomeUsuario}}</span>
-            <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="!isLogado()" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</button>
-            <button class="btn btn-outline-warning my-2 my-sm-0" *ngIf="isLogado()" type="button" (click)="logout()">Logout</button>
+                <span class="mr-2 text-light">Olá, {{getUsuario().nomeUsuario}}</span>
+            <button class="btn btn-link my-2 my-sm-0 text-light" *ngIf="!isLogado()" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active"  data-toggle="tooltip" data-placement="bottom" title="Entrar">
+                <i class="fas fa-sign-in-alt mr-2"></i>Entrar
+            </button>
+            <button class="btn btn-link my-2 my-sm-0 text-light" *ngIf="isLogado()" type="button" (click)="logout()" data-toggle="tooltip" data-placement="bottom" title="Sair">
+                <small class="h6 mr-2">Sair</small>
+                <i class="fas fa-sign-out-alt mr-2"></i>
+            </button>
         </div>
     </div>
 </nav>

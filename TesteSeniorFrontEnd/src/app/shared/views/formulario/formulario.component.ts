@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Solicitacao } from 'src/entities/solicitacao.entity';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
-import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 import { SessionService } from 'src/app/services/session.service';
 import { Usuario } from 'src/entities/usuario.entity';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { SimpleModalComponent } from '../../modal/simple-modal/simple-modal.component';
 
 @Component({
   selector: 'app-formulario',
@@ -13,6 +14,7 @@ import { Usuario } from 'src/entities/usuario.entity';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
+  bsModalRef: BsModalRef;
   modalFeedback: number;
   modalFeedbackMessage: string;
 
@@ -23,6 +25,7 @@ export class FormularioComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private ss:SessionService,
+    private modalService: BsModalService,
     private router: Router
   ) { }
 
@@ -47,7 +50,7 @@ export class FormularioComponent implements OnInit {
           valorSolicitacao: 0
         });
       }
-    });
+    }, error => this.abrirModal('Feerback', error.message));
   }
 
   private buildForm() {
@@ -99,7 +102,7 @@ export class FormularioComponent implements OnInit {
     this.solicitacao.dtAprovadoSolicitacao = new Date();
     this.solicitacaoService.atualizar(this.solicitacao).subscribe(res => {
       this.voltar();
-    }, (error) => alert(error.message));
+    }, (error) => this.abrirModal('Feerback', error.message));
   }
 
   isLogado = ():boolean => this.ss.isLogado()
@@ -110,7 +113,7 @@ export class FormularioComponent implements OnInit {
     this.solicitacao.dtReprovadoSolicitacao = new Date();
     this.solicitacaoService.atualizar(this.solicitacao).subscribe(res => {
       this.voltar();
-    }, (error) => alert(error.message));
+    }, (error) => this.abrirModal('Feerback', error.message));
   }
 
   voltar = () => {
@@ -119,4 +122,13 @@ export class FormularioComponent implements OnInit {
     arr.pop();
     this.router.navigate(arr);
   }
+
+  abrirModal(title: string, ...mensagem: string[]) {
+    const initialState = {
+      list: mensagem,
+      title: title
+    };
+    this.bsModalRef = this.modalService.show(SimpleModalComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Fechar';
+    }
 }

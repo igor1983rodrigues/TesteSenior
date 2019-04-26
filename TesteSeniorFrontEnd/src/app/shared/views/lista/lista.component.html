@@ -43,9 +43,9 @@
     </form>
   </div>
 
-  <div class="bg-dark p-3 rounded">
+  <div class="shadow bg-senior-secondary p-3 rounded">
     <table class="table table-striped table-hover">
-      <thead class="thead-dark">
+      <thead class="thead-senior-secondary">
         <tr>
           <th scope="col" class="border-top-0">#</th>
           <th scope="col" class="border-top-0">Solicitante</th>
@@ -56,7 +56,7 @@
           <th scope="col" class="border-top-0" *ngIf="!isAdministrador">&nbsp;</th>
         </tr>
       </thead>
-      <tbody class="bg-white">
+      <tbody class="shadow bg-white">
         <tr *ngFor="let item of solicitacaoList">
           <th scope="row">{{item.idSolicitacao}}</th>
           <td>{{item.solicitanteSolicitacao}}</td>
@@ -70,11 +70,13 @@
           </td>
           <td *ngIf="!isAdministrador">
             <button class="btn btn-success" [routerLink]="['solicitacao', item.idSolicitacao]"
-              routerLinkActive="router-link-active">VER</button>
+              routerLinkActive="router-link-active">
+              <i class="fas fa-eye mr-2"></i>Detalhes
+            </button>
           </td>
         </tr>
       </tbody>
-      <tfoot class="bg-light" *ngIf="solicitacaoList?.length == 0">
+      <tfoot class="shadow bg-light" *ngIf="solicitacaoList?.length == 0">
         <tr>
           <td [attr.colspan]="isAdministrador ? 6:7">Não há registros encontrados</td>
         </tr>
