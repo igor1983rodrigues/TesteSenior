@@ -1,0 +1,87 @@
+<app-container-common>
+  <div class="mb-3 container p3 rounded bg-info text-light" *ngIf="isAdministrador">
+    <form (ngSubmit)="filtrar()" class="form-inline">
+      <div class="custom-control my-1 mr-sm-2">
+        <label for="nomeSolicitante">Solicitante</label>
+        <input name="nomeSolicitante" [(ngModel)]="filtroModel.nomeSolicitante" type="text" class="form-control"
+          id="nomeSolicitante" placeholder="Nome do Solicitante" autocomplete="off">
+      </div>
+
+      <div class="my-1 mr-sm-2">
+        <label for="emailSolicitante">E-mail</label>
+        <input name="emailSolicitante" [(ngModel)]="filtroModel.emailSolicitante" type="email" class="form-control"
+          id="emailSolicitante" placeholder="solicitante@exempplo.com.br" autocomplete="off">
+      </div>
+
+      <div class="my-1 mr-sm-2">
+        <label for="descricao">Descrição</label>
+        <input name="descricao" [(ngModel)]="filtroModel.descricao" type="text" class="form-control" id="descricao"
+          placeholder="Descrição" autocomplete="off">
+      </div>
+
+      <div class="my-1 mr-sm-2 mr-lg-auto">
+        <div class="custom-control custom-checkbox">
+          <input name="isPendente" [(ngModel)]="filtroModel.isPendente" type="checkbox" class="custom-control-input"
+            id="pendente" (change)="filtrar()">
+          <label class="custom-control-label" for="pendente">Listar pendentes</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input name="isAprovado" [(ngModel)]="filtroModel.isAprovado" type="checkbox" class="custom-control-input"
+            id="aprovados" (change)="filtrar()">
+          <label class="custom-control-label" for="aprovados">Listar aprovados</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input name="isReprovado" [(ngModel)]="filtroModel.isReprovado" type="checkbox" class="custom-control-input"
+            id="reprovados" (change)="filtrar()">
+          <label class="custom-control-label" for="reprovados">Listar Reprovados</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary my-1">Filtrar</button>
+    </form>
+  </div>
+
+  <div class="shadow bg-senior-secondary p-3 rounded">
+    <table class="table table-striped table-hover">
+      <thead class="thead-senior-secondary">
+        <tr>
+          <th scope="col" class="border-top-0">#</th>
+          <th scope="col" class="border-top-0">Solicitante</th>
+          <th scope="col" class="border-top-0">E-mail</th>
+          <th scope="col" class="border-top-0">Descrição</th>
+          <th scope="col" class="border-top-0">Preço</th>
+          <th scope="col" class="border-top-0">Situação</th>
+          <th scope="col" class="border-top-0" *ngIf="!isAdministrador">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody class="shadow bg-white">
+        <tr *ngFor="let item of solicitacaoList">
+          <th scope="row">{{item.idSolicitacao}}</th>
+          <td>{{item.solicitanteSolicitacao}}</td>
+          <td>{{item.emailSolicitacao}}</td>
+          <td>{{item.descricaoItemSolicitacao}}</td>
+          <td>{{item.valorSolicitacao | currency:'BRL'}}</td>
+          <td>
+            <span class="badge" [ngClass]="getSituacaoClass(item)">
+              {{getSituacaoTexto(item)}}
+            </span>
+          </td>
+          <td *ngIf="!isAdministrador">
+            <button class="btn btn-success" [routerLink]="['solicitacao', item.idSolicitacao]"
+              routerLinkActive="router-link-active">
+              <i class="fas fa-eye mr-2"></i>Detalhes
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="shadow bg-light" *ngIf="solicitacaoList?.length == 0">
+        <tr>
+          <td [attr.colspan]="isAdministrador ? 6:7">Não há registros encontrados</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</app-container-common>

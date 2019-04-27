@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-senior-primary {
+    background-color: #00c89b;
+}
+
+.bg-senior-secondary {
+    background-color: #008267;
+}
+
+.table .thead-senior-secondary th {
+    color: #fff;
+    background-color: #008267;
+    border-color: #00c89b;
+}
+
+.table .thead-senior-primary th {
+    color: #fff;
+    background-color: #00c89b;
+    border-color: #008267;
+}
+
+@media (max-width: 900px) {
+    
+}

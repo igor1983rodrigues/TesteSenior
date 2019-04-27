@@ -1,0 +1,21 @@
+<div id="container-login" class="text-center">
+  <form [formGroup]="formLogin" class="form-signin" (ngSubmit)="logar()">
+    <div class="bg-light p-3 rounded shadow">
+        <app-alert-component *ngIf="!!errMessage" tipo="0">{{errMessage}}</app-alert-component>
+      <div class="">
+        <img class="mb-4" src="../../assets/svg/logo.svg" alt="" height="72">
+      </div>
+      <h1 class="h3 mb-3 font-weight-normal">Entre</h1>
+      <label for="inputEmail" class="sr-only">E-mail</label>
+      <input formControlName="inputEmail" type="email" id="inputEmail" class="form-control"
+        placeholder="Endereço de e-mail" autofocus>
+      <label for="inputPassword" class="sr-only">Senha</label>
+      <input formControlName="inputPassword" type="password" id="inputPassword" class="form-control"
+        placeholder="Senha">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!formLogin.valid">Entrar</button>
+        <h5 class="h5 mb-3 mt-3 font-weight-normal">Ou então,</h5>
+        <button class="btn btn-lg btn-secondary btn-block" type="button" (click)="abrirSolicitacao()">Abra uma solicitação</button>
+        <p class="mt-5 mb-3 text-muted">&copy; AMCOM 2019</p>
+    </div>
+  </form>
+</div>

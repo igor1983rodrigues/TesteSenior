@@ -1,0 +1,37 @@
+<nav id="navbar" class="shadow navbar navbar-expand-lg navbar-dark bg-senior-primary">
+    <a class="navbar-brand" href="#">
+        <img src="../assets/svg/logo-desktop.svg" height="30" class="d-inline-block align-top" alt="">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/solicitante']" routerLinkActive="router-link-active" >Solicitação</a>
+            </li>
+            <li *ngIf="isAlmoxarife()" class="nav-item">
+                <a class="nav-link" [routerLink]="['/almoxarife']" routerLinkActive="router-link-active" >Almoxarife</a>
+            </li>
+            <li *ngIf="isAdministracao()" class="nav-item" >
+                <a class="nav-link" [routerLink]="['/administracao']" routerLinkActive="router-link-active">Administracao</a>
+            </li>
+        </ul>
+
+        
+        <div class="form-inline my-2 my-lg-0">
+                <span class="mr-2 text-light">Olá, {{getUsuario().nomeUsuario}}</span>
+            <button class="btn btn-link my-2 my-sm-0 text-light" *ngIf="!isLogado()" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active"  data-toggle="tooltip" data-placement="bottom" title="Entrar">
+                <i class="fas fa-sign-in-alt mr-2"></i>Entrar
+            </button>
+            <button class="btn btn-link my-2 my-sm-0 text-light" *ngIf="isLogado()" type="button" (click)="logout()" data-toggle="tooltip" data-placement="bottom" title="Sair">
+                <small class="h6 mr-2">Sair</small>
+                <i class="fas fa-sign-out-alt mr-2"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+<router-outlet></router-outlet>
