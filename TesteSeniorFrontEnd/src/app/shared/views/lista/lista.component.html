@@ -10,7 +10,7 @@
       <div class="my-1 mr-sm-2">
         <label for="emailSolicitante">E-mail</label>
         <input name="emailSolicitante" [(ngModel)]="filtroModel.emailSolicitante" type="email" class="form-control"
-          id="emailSolicitante" placeholder="solicitante@exempplo.com.br" autocomplete="off">
+          id="emailSolicitante" placeholder="solicitante@exemplo.com.br" autocomplete="off">
       </div>
 
       <div class="my-1 mr-sm-2">
@@ -39,12 +39,14 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary my-1">Filtrar</button>
+      <button type="submit" class="btn btn-primary my-1" [disabled]="isLoading">
+        <i class="fas fa-filter mr-2"></i>Filtrar
+      </button>
     </form>
   </div>
 
   <div class="shadow bg-senior-secondary p-3 rounded">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover w-lg-100">
       <thead class="thead-senior-secondary">
         <tr>
           <th scope="col" class="border-top-0">#</th>
@@ -64,7 +66,8 @@
           <td>{{item.descricaoItemSolicitacao}}</td>
           <td>{{item.valorSolicitacao | currency:'BRL'}}</td>
           <td>
-            <span class="badge" [ngClass]="getSituacaoClass(item)">
+            <ng-template #template>{{item.motivoReprovacaoSolicitacao || getSituacaoTexto(item)}}</ng-template>
+            <span class="badge" [ngClass]="getSituacaoClass(item)" [tooltip]="template" placement="auto">
               {{getSituacaoTexto(item)}}
             </span>
           </td>

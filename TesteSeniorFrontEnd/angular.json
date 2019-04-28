@@ -30,8 +30,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/js/fontawesome-free-5.8.1-web/all.min.js",
-              "src/assets/js/tooltips.js"
+              "src/assets/js/fontawesome-free-5.8.1-web/all.min.js"
             ],
             "es5BrowserSupport": true
           },

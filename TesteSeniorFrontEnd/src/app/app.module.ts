@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgxCurrencyModule } from 'ngx-currency';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UsuarioService } from './services/usuario.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenHttpInterceptor } from './services/token-http.interceptor';
 
 @NgModule({
@@ -21,6 +20,7 @@ import { TokenHttpInterceptor } from './services/token-http.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TooltipModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
