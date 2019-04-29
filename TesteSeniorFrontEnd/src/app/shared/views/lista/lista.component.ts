@@ -70,6 +70,12 @@ export class ListaComponent implements OnInit {
     'badge-danger': this.getSituacao(item) === 2
   });
 
+  getTotal = (): number => {
+    let res = 0;
+    this.solicitacaoList.forEach(item => res += item.valorSolicitacao);
+    return res;
+  }
+
   getSituacaoTexto = (item: Solicitacao): string => {
     switch (this.getSituacao(item)) {
       case 0:
