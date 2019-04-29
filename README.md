@@ -5,6 +5,7 @@
 * Proposta
 * Informações iniciais
 * Arquitetura do projeto
+* Deploy Front-end
 * Tecnologias envolvidas
 
 ## Introdução
@@ -27,6 +28,9 @@ A arquitetura conta com a seguinte estrutura:
  * TesteSeniorJAXRS (Projeto abandonado, apenas disponível para ler o código fonte)
  * TesteSeniorSB (Projeto Back-end oficial, que será usado para start da aplicação)
  * scripts.sql (Deve ser executado antes de startar a primeira vez)
+ 
+## Deploy Front-end
+No diretório de front-end (TesteSeniorFrontEnd), executar no terminal o seguinte comando: `ng build prod`, e então, será gerado o caminho `dist/front-end-src`. Copie todo o conteúdo desse caminho gerado. O index.html deverá ser movido para `resource/template` do projeto **TesteSeniorSB**, e o restate deverá ficar em `resource/static`.
 
 ## Tecnologias envolvidas
 * Spring Boot
