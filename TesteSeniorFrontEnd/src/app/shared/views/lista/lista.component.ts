@@ -99,6 +99,15 @@ export class ListaComponent implements OnInit {
       );
   }
 
+  limparFiltro(): void {
+    this.filtroModel = {
+      isPendente: true,
+      isAprovado: true,
+      isReprovado: true
+    };
+    this.filtrar();
+  }
+
   private openDialogError(error) {
     this.modalService.abrirModalDanger('Feedback', error.message);
     this.isLoading = false;
