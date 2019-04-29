@@ -15,7 +15,8 @@ A proposta visa uma aplicação onde um produto é solicitado. Este produto prec
 Para atender a proposta, foi criada uma tela de login, onde o usuário poderá ter um perfil de almoxarife ou administração. Caso não for feito login, o usuário terá somente a tela para fazer solicitações.
 
 ## Informações iniciais
-Antes de mais nada, deve ser executado o script "script.sql", contido na raíz do projeto.
+Antes de mais nada, deve ser executado o script "`script.sql`", contido na raíz do projeto. Após executar este scripts, dois usuários serão criados, à saber: `almoxarife@senior.com.br` e `administracao@senior.com.br`, ambos com senha "1234".
+
 Existem dois projetos de back-end na raíz, porque inicialmente foi desenvolvido usando JAX-RS. Devido dificuldades com Cors, esse projeto foi abandonado, e iniciado outro, utilizando Spring Boot. O primeiro foi mantido porque se tratou de esforço/hora, para dar uma posição devido o tempo de desenvolvimento. Obviamente, o primeiro projeto deverá ser ignorado.
  
 ## Arquitetura do projeto
