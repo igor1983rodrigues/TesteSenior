@@ -21,15 +21,11 @@ Existem dois projetos de back-end na raíz, porque inicialmente foi desenvolvido
 ## Arquitetura do projeto
 A arquitetura conta com a seguinte estrutura:
 
-raiz
-|
-|__TesteSeniorFrontEnd (Código fonte da aplicação front-end)
-|
-|__TesteSeniorJAXRS (Projeto abandonado, apenas disponível para ler o código fonte)
-|
-|__TesteSeniorSB (Projeto Back-end oficial, que será usado para start da aplicação)
-|
-|__scripts.sql (Deve ser executado antes de startar a primeira vez)
+**raiz**
+ * TesteSeniorFrontEnd (Código fonte da aplicação front-end)
+ * TesteSeniorJAXRS (Projeto abandonado, apenas disponível para ler o código fonte)
+ * TesteSeniorSB (Projeto Back-end oficial, que será usado para start da aplicação)
+ * scripts.sql (Deve ser executado antes de startar a primeira vez)
 
 ## Tecnologias envolvidas
 * Spring Boot
