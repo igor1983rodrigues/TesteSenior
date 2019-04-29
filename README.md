@@ -1,34 +1,31 @@
-# Proposta de teste destinada ‡ Senior Sistemas
+# Proposta de teste destinada √† Senior Sistemas
 
-## Sum·rio
-* IntroduÁ„o
+## Sum√°rio
+* Introdu√ß√£o
 * Proposta
-* InformaÁıes iniciais
+* Informa√ß√µes iniciais
 * Arquitetura do projeto
 * Tecnologias envolvidas
 
-## IntroduÁ„o
-Para que seja possÌvel uma alocaÁ„o, foi desenvolvido um projeto de teste para a Senior Sistemas, visando atender melhor suas necessidades. O projeto destina-se a avaliaÁ„o de cÛdigo fonte back-end, front-end e conhecimentos em banco de dados. ‡ seguir, irei detalhar a proposta.
+## Introdu√ß√£o
+Para que seja poss√≠vel uma aloca√ß√£o, foi desenvolvido um projeto de teste para a Senior Sistemas, visando atender melhor suas necessidades. O projeto destina-se a avalia√ß√£o de c√≥digo fonte back-end, front-end e conhecimentos em banco de dados. √† seguir, irei detalhar a proposta.
  
 ## Proposta
-A proposta visa uma aplicaÁ„o onde um produto È solicitado. Este produto precisa ter informaÁıes do solicitante, o valor destinado e o produto em si. Feita a solicitaÁ„o, o almoxarife ter· acesso ‡s solicitaÁıes abetas, e poder· decidir em aprovar ou reprovar. Caso a proposta for reprovada, dever· informar um motivo. A administraÁ„o poder· checar todas as propostas, aprovadas, reprovadas, ou pendentes, e poder· filtrar.
-Para atender a proposta, foi criada uma tela de login, onde o usu·rio poder· ter um perfil de almoxarife ou administraÁ„o. Caso n„o for feito login, o usu·rio ter· somente a tela para fazer solicitaÁıes.
+A proposta visa uma aplica√ß√£o onde um produto √© solicitado. Este produto precisa ter informa√ß√µes do solicitante, o valor destinado e o produto em si. Feita a solicita√ß√£o, o almoxarife ter√° acesso √†s solicita√ß√µes abetas, e poder√° decidir em aprovar ou reprovar. Caso a proposta for reprovada, dever√° informar um motivo. A administra√ß√£o poder√° checar todas as propostas, aprovadas, reprovadas, ou pendentes, e poder√° filtrar.
+Para atender a proposta, foi criada uma tela de login, onde o usu√°rio poder√° ter um perfil de almoxarife ou administra√ß√£o. Caso n√£o for feito login, o usu√°rio ter√° somente a tela para fazer solicita√ß√µes.
 
-## InformaÁıes iniciais
-Antes de mais nada, deve ser executado o script "script.sql", contido na raÌz do projeto.
-Existem dois projetos de back-end na raÌz, porque inicialmente foi desenvolvido usando JAX-RS. Devido dificuldades com Cors, esse projeto foi abandonado, e iniciado outro, utilizando Spring Boot. O primeiro foi mantido porque se tratou de esforÁo/hora, para dar uma posiÁ„o devido o tempo de desenvolvimento. Obviamente, o primeiro projeto dever· ser ignorado.
+## Informa√ß√µes iniciais
+Antes de mais nada, deve ser executado o script "script.sql", contido na ra√≠z do projeto.
+Existem dois projetos de back-end na ra√≠z, porque inicialmente foi desenvolvido usando JAX-RS. Devido dificuldades com Cors, esse projeto foi abandonado, e iniciado outro, utilizando Spring Boot. O primeiro foi mantido porque se tratou de esfor√ßo/hora, para dar uma posi√ß√£o devido o tempo de desenvolvimento. Obviamente, o primeiro projeto dever√° ser ignorado.
  
 ## Arquitetura do projeto
 A arquitetura conta com a seguinte estrutura:
-raiz
-|
-|__TesteSeniorFrontEnd (CÛdigo fonte da aplicaÁ„o front-end)
-|
-|__TesteSeniorJAXRS (Projeto abandonado, apenas disponÌvel para ler o cÛdigo fonte)
-|
-|__TesteSeniorSB (Projeto Back-end oficial, que ser· usado para start da aplicaÁ„o)
-|
-|__scripts.sql (Deve ser executado antes de startar a primeira vez)
+
+**raiz**
+ * TesteSeniorFrontEnd (C√≥digo fonte da aplica√ß√£o front-end)
+ * TesteSeniorJAXRS (Projeto abandonado, apenas dispon√≠vel para ler o c√≥digo fonte)
+ * TesteSeniorSB (Projeto Back-end oficial, que ser√° usado para start da aplica√ß√£o)
+ * scripts.sql (Deve ser executado antes de startar a primeira vez)
 
 ## Tecnologias envolvidas
 * Spring Boot
