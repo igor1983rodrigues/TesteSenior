@@ -22,7 +22,6 @@ Existem dois projetos de back-end na raíz, porque inicialmente foi desenvolvido
 A arquitetura conta com a seguinte estrutura:
 raiz
 |
-
 |__TesteSeniorFrontEnd (Código fonte da aplicação front-end)
 |
 |__TesteSeniorJAXRS (Projeto abandonado, apenas disponível para ler o código fonte)
