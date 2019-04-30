@@ -100,10 +100,14 @@ export class FormularioComponent implements OnInit {
   }
 
   private sucesso({ id, message }) {
-    this.modalService.abrirModalSuccess('Feedback', message);
     this.formSolicitante.reset();
-    this.formSolicitante.get("emailSolicitacao").setValue(this.getUsuario().emailUsuario);
-    this.formSolicitante.get("solicitanteSolicitacao").setValue(this.getUsuario().nomeUsuario);
+    this.modalService.abrirModalSuccess('Feedback', message);
+    this.preencherForm({
+      emailSolicitacao: this.getUsuario().emailUsuario,
+      solicitanteSolicitacao: this.getUsuario().nomeUsuario,
+      descricaoItemSolicitacao: null,
+      valorSolicitacao: 0
+    });
   }
 
   aprovar(): void {
