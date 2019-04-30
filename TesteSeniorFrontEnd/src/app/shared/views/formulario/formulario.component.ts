@@ -5,7 +5,6 @@ import { Solicitacao } from 'src/entities/solicitacao.entity';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Usuario } from 'src/entities/usuario.entity';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AMModalService } from '../../modal/am-modal.service';
 
 @Component({
@@ -101,8 +100,14 @@ export class FormularioComponent implements OnInit {
   }
 
   private sucesso({ id, message }) {
-    this.modalService.abrirModalSuccess('Feedback', message);
     this.formSolicitante.reset();
+    this.modalService.abrirModalSuccess('Feedback', message);
+    this.preencherForm({
+      emailSolicitacao: this.getUsuario().emailUsuario,
+      solicitanteSolicitacao: this.getUsuario().nomeUsuario,
+      descricaoItemSolicitacao: null,
+      valorSolicitacao: 0
+    });
   }
 
   aprovar(): void {
