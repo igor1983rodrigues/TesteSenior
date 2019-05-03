@@ -15,13 +15,14 @@ export class ListaComponent implements OnInit {
   solicitacaoList: Solicitacao[];
   formFiltro: FormGroup;
   filtroModel: {
-    nomeSolicitante?: string,
-    emailSolicitante?: string,
-    descricao?: string,
+    nomeSolicitante?: string;
+    emailSolicitante?: string;
+    descricao?: string;
     isPendente: boolean;
     isAprovado: boolean;
     isReprovado: boolean;
   };
+  page: { page?: number; size?: number; total?: number };
 
   isAdministrador: boolean;
   isLoading: boolean;
@@ -36,6 +37,7 @@ export class ListaComponent implements OnInit {
       isAprovado: true,
       isReprovado: true
     };
+    this.page = { size: 5 };
     this.isLoading = true;
     this.isAdministrador = ss.isPerfilAdministrativo();
   }
@@ -43,9 +45,9 @@ export class ListaComponent implements OnInit {
   ngOnInit() {
     this.solicitacaoList = [];
     this.solicitacaoService
-      .listSolicitacao()
+      .listSolicitacao(this.page)
       .subscribe(
-        lista => (this.solicitacaoList = lista),
+        (res: any) => this.popularLista(res),
         error => this.openDialogError(error),
         () => (this.isLoading = false)
       );
@@ -62,17 +64,17 @@ export class ListaComponent implements OnInit {
     } else {
       return 2;
     }
-  };
+  }
 
   getSituacaoClass = (item: Solicitacao): any => ({
     'badge-secondary': this.getSituacao(item) === 0,
     'badge-success': this.getSituacao(item) === 1,
     'badge-danger': this.getSituacao(item) === 2
-  });
+  })
 
   getTotal = (): number => {
     let res = 0;
-    this.solicitacaoList.forEach(item => res += item.valorSolicitacao);
+    this.solicitacaoList.forEach(item => (res += item.valorSolicitacao));
     return res;
   }
 
@@ -85,18 +87,35 @@ export class ListaComponent implements OnInit {
       case 2:
         return 'REPROVADO';
     }
-  };
+  }
 
   filtrar(): void {
     this.isLoading = true;
     this.solicitacaoList = [];
     this.solicitacaoService
-      .filtrar(this.filtroModel)
+      .filtrar(this.page, this.filtroModel)
       .subscribe(
-        res => (this.solicitacaoList = res),
+        (res: any) => this.popularLista(res),
         error => this.openDialogError(error),
         () => (this.isLoading = false)
       );
+  }
+
+  private popularLista(res: {
+    content?: Solicitacao[];
+    pageable: any;
+    last: number;
+    totalPages: number;
+    totalElements: number;
+    first: number;
+    sort: any;
+    numberOfElements: number;
+    size: number;
+    number: number;
+    empty: boolean;
+  }) {
+    this.solicitacaoList = res.content;
+    this.page.total = res.totalElements;
   }
 
   limparFiltro(): void {
@@ -105,6 +124,11 @@ export class ListaComponent implements OnInit {
       isAprovado: true,
       isReprovado: true
     };
+    this.filtrar();
+  }
+
+  trocarPagina(e:any) {
+    this.page.page = e.page - 1;
     this.filtrar();
   }
 

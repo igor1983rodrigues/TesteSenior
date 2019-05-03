@@ -2,6 +2,7 @@ package br.com.amcom.TesteSeniorSB.service;
 
 import java.util.Map;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +24,9 @@ public class SolicitacaoService extends SolicitacaoController {
 
 	@GetMapping
 	@Override
-	public Object listarTodos() {
+	public Object listarTodos(Pageable page) {
 		try {
-			return Respostas.ok(super.listarTodos());
+			return Respostas.ok(super.listarTodos(page));
 		} catch (Exception ex) {
 			return Respostas.internalServerError(ex);
 		}
@@ -33,9 +34,9 @@ public class SolicitacaoService extends SolicitacaoController {
 
 	@GetMapping("/emaberto")
 	@Override
-	public Object listarEmAberto() {
+	public Object listarEmAberto(Pageable page) {
 		try {
-			return Respostas.ok(super.listarEmAberto());
+			return Respostas.ok(super.listarEmAberto(page));
 		} catch (Exception ex) {
 			return Respostas.internalServerError(ex);
 		}
@@ -43,9 +44,9 @@ public class SolicitacaoService extends SolicitacaoController {
 
 	@GetMapping("/filtro")
 	@Override
-	public Object listarFiltrado(@RequestParam Map<String, Object> filtro) {
+	public Object listarFiltrado(Pageable page, @RequestParam Map<String, Object> filtro) {
 		try {
-			return Respostas.ok(super.listarFiltrado(filtro));
+			return Respostas.ok(super.listarFiltrado(page, filtro));
 		} catch (Exception ex) {
 			return Respostas.internalServerError(ex);
 		}

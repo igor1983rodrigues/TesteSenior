@@ -8,6 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+
+import com.querydsl.core.types.Predicate;
 
 import br.com.amcom.TesteSeniorSB.model.dao.SolicitacaoDao;
 import br.com.amcom.TesteSeniorSB.model.entities.Solicitacao;
@@ -44,21 +47,21 @@ public class SolicitacaoController {
 		throw new Exception("Esta solicitação não existe ainda.");
 	}
 
-	public Object listarTodos() {
-		return this.solicitacaoRepositorio.findAll();
+	public Object listarTodos(Pageable page) {
+		return this.solicitacaoRepositorio.findAll(page);
 	}
 
-	public Object listarEmAberto() {
-		return this.solicitacaoRepositorio.listarEmAberto();
+	public Object listarEmAberto(Pageable page) {
+		return this.solicitacaoRepositorio.listarEmAberto(page);
 	}
 
 	public Object getId(long id) {
 		return this.solicitacaoRepositorio.findById(id);
 	}
 
-	public Object listarFiltrado(Map<String, Object> filtro) {
+	public Object listarFiltrado(Pageable page, Map<String, Object> filtro) {
 		ISolicitacaoDao dao = new SolicitacaoDao(solicitacaoRepositorio, factory, entityManager);
-		return dao.findByFilter(filtro);
+		return dao.findByFilter(page, filtro);
 	}
 	
 }

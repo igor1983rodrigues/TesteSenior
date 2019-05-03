@@ -19,6 +19,8 @@ Para atender a proposta, foi criada uma tela de login, onde o usuário poderá t
 Antes de mais nada, deve ser executado o script "`script.sql`", contido na raíz do projeto. Após executar este scripts, dois usuários serão criados, à saber: `almoxarife@senior.com.br` e `administracao@senior.com.br`, ambos com senha "1234".
 
 Existem dois projetos de back-end na raíz, porque inicialmente foi desenvolvido usando JAX-RS. Devido dificuldades com Cors, esse projeto foi abandonado, e iniciado outro, utilizando Spring Boot. O primeiro foi mantido porque se tratou de esforço/hora, para dar uma posição devido o tempo de desenvolvimento. Obviamente, o primeiro projeto deverá ser ignorado.
+
+É importante lembrar de executar o comando `mvn compile` para criar o QSolicitacao, ou então, no eclipse, clique com o botão direito do mouse no projeto, e selecione `Run As > Maven generate-sources`.
  
 ## Arquitetura do projeto
 A arquitetura conta com a seguinte estrutura:

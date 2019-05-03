@@ -99,7 +99,26 @@
         </tr>
       </tfoot>
     </table>
-    <!-- pagination [totalItems]="30" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination -->
+
+    <div class="row">
+      <div class="col-md-auto text-white p-2 ml-3">
+        <span>{{(page.page || 0) + 1}}</span>
+      </div>
+
+      <div class="col-md-auto text-white p-2">
+        <span>/</span>
+      </div>
+
+      <div class="col-md-1 mr-auto">
+        <input class="form-control" type="number" min="5" max="100" step="5" (change)="filtrar()"
+          [(ngModel)]="page.size">
+      </div>
+
+      <div class="col-md-auto">
+        <pagination [totalItems]="page.total" [itemsPerPage]="page.size" previousText="&lsaquo;"
+          (pageChanged)="trocarPagina($event)" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+    </div>
   </div>
 
 </app-container-common>
