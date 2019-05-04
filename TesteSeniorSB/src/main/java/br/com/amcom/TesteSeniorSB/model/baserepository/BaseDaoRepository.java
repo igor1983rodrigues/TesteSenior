@@ -50,6 +50,10 @@ public class BaseDaoRepository<T, R extends CrudRepository<T, Long>> implements 
 		this.entityManager = entityManager;
 	}
 
+	public R getRepository() {
+		return repository;
+	}
+
 	@Override
 	public void inserir(T model) {
 		this.repository.save(model);
